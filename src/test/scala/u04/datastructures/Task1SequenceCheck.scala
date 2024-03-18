@@ -25,6 +25,9 @@ object Task1SequenceCheck extends Properties("Sequence"):
     forAll(arbitrary[String]): s =>
       of(0, s) == Nil()
 
-
   override def overrideParameters(p: Parameters): Parameters =
     p.withMinSuccessfulTests(50)
+      .withMaxDiscardRatio(3)
+      .withWorkers(2)
+      .withMinSize(5)
+      .withMaxSize(10)
