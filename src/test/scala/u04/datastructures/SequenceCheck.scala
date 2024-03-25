@@ -6,8 +6,9 @@ import org.scalacheck.Arbitrary.arbitrary
 import Sequences.*, Sequence.*
 
 object SequenceCheck extends Properties("Sequence"):
-
   def smallInt(): Gen[Int] = Gen.choose(0,100)
+
+  def lst(): Gen[Int] = Gen.choose(0,100)
 
   property("of is a correct factory") =
     forAll(smallInt(), arbitrary[String]): (i, s) =>

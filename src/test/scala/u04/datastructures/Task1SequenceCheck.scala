@@ -11,7 +11,7 @@ import org.scalacheck.Test
 object Task1SequenceCheck extends Properties("Sequence"):
 
   def smallInt(): Gen[Int] = Gen.choose(0,100)
-  
+
   property("of is a correct factory") =
     forAll(smallInt(), arbitrary[String]): (i, s) =>
       of(i, s) == of(i, s).filter(e => e == s)
