@@ -23,9 +23,9 @@ I created a file named `Task1ConvertToScalaTest` where I wrote the tests using S
 #Task 2: ADT-VERIFIER
 
 1. Define an ADT for sequences where it is composed by type, constructors, operations and axioms.
-  * constructors contain the principals concepts that make a Sequences (cons and nil)
-  * operations are map/concat/filer/flatMap/foldLeft/reduce
-  * axioms represent the rules that each operation defined should observe. This axioms are like a contract
+   * constructors contain the principals concepts that make a Sequences (cons and nil)
+   * operations are map/concat/filer/flatMap/foldLeft/reduce
+   * axioms represent the rules that each operation defined should observe. This axioms are like a contract
 
 2. Define operations of map/concat/filer/flatMap/foldLeft/reduce inside a trait SequenceADT
 3. Realise two different implementation of these operations:
