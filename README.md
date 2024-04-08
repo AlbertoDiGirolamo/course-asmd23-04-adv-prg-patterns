@@ -20,7 +20,7 @@ I created a file named `Task1ConvertToScalaTest` where I wrote the tests using S
 * ScalaCheck is based on the concept of properties: you define a property that should hold true for a certain class or function, and ScalaCheck automatically generates a series of test cases to check if the property holds.
 * ScalaCheck is particularly useful for exhaustively checking properties over a large set of randomly generated data.
 
-#Task 2: ADT-VERIFIER
+# Task 2: ADT-VERIFIER
 
 1. Define an ADT for sequences where it is composed by type, constructors, operations and axioms.
    * constructors contain the principals concepts that make a Sequences (cons and nil)
@@ -41,3 +41,12 @@ A private enum define Cons Nil cases and then an opaque alias Sequence[A] allows
 ## Scala List Implementatio
 
 This implementation is realized using Scala List operation. In this case the opaque alias Sequence[A] consider the List[A] type.
+
+## Test
+
+The purpose is to test Cons/Nil and Scala List Implementations.
+Inside SequenceCheck file was written a definition where is implemented a set of ScalaCheck tests. These is useful for testing both implementations.
+
+Each test is develop for check an axioms 
+
+Generator of mapper/sequence/predicate/operator have been added at the beginning 
