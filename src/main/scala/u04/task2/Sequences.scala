@@ -47,7 +47,7 @@ object Sequences:
     def filter[A](sequence: Sequence[A], predicate: A => Boolean): Sequence[A]
     def flatMap[A, B](sequence: Sequence[A], mapper: A => Sequence[B]): Sequence[B]
     def foldLeft[A, B](sequence: Sequence[A], z: B, f: (B, A) => B): B
-    def reduce[A](sequence: Sequence[A], f: (A, A) => A): A
+    def reduce[A](sequence: Sequence[A], f: (A, A) => A): Option[A]
     def getCons[A](sequence: Sequence[A]): Option[(A, Sequence[A])]
 
   object BasicSequenceADT extends SequenceADT:
@@ -84,9 +84,9 @@ object Sequences:
       case Cons(h, t) => foldLeft(t, f(z, h), f)
       case Nil() => z
 
-    override def reduce[A](sequence: Sequence[A], f: (A, A) => A): A = sequence match
-      case Cons(h, t) => foldLeft(t, h, f)
-      case Nil() => throw new UnsupportedOperationException("Empty sequence")
+    override def reduce[A](sequence: Sequence[A], f: (A, A) => A): Option[A] = sequence match
+      case Cons(h, t) => Some(foldLeft(t, h, f))
+      case Nil() => None
 
     override def getCons[A](sequence: Sequence[A]): Option[(A, Sequence[A])] =
       sequence match
@@ -111,7 +111,7 @@ object Sequences:
 
     override def foldLeft[A, B](sequence: Sequence[A], z: B, f: (B, A) => B): B = sequence.foldLeft(z)(f)
 
-    override def reduce[A](sequence: Sequence[A], f: (A, A) => A): A = sequence.reduce(f)
+    override def reduce[A](sequence: Sequence[A], f: (A, A) => A): Option[A] = sequence.reduceOption(f)
 
     override def getCons[A](sequence: Sequence[A]): Option[(A, Sequence[A])] = sequence match
       case h :: t => Some(h, t)

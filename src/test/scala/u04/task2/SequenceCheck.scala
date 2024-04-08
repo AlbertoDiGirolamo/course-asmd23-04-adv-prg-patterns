@@ -59,12 +59,9 @@ object SequenceCheck extends Properties("Sequence"):
         (getCons(s), z, op) match
           case(None, z, op) => foldLeft(s, z, op) == z
           case(Some(h, t), z, op) => foldLeft(cons(h, t), z, op) == foldLeft(t, op(z, h), op)
-
-   /* property("reduce axiom") =
+          
+    property("reduce axiom") =
       forAll(sequenceGen(), operatorGen()): (s, op) =>
-        (s, op) match
-          case (nil, _) => throw new UnsupportedOperationException("Cannot reduce an empty sequence")
-          //case(cons(h, t), op) => reduce(cons(h, t), op) == Some(foldLeft(t, h, op))
-
-
-    */
+        (getCons(s), op) match
+          case (Some(h, t), op) => reduce(s, op).contains(foldLeft(t, h, op))
+          case (None, _) => reduce(s, op).isEmpty
