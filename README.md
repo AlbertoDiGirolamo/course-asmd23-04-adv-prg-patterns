@@ -58,11 +58,20 @@ A private enum define Cons Nil cases and then an opaque alias Sequence[A] allows
 
 This implementation is realized using Scala List operation. In this case the opaque alias Sequence[A] consider the List[A] type.
 
+
+In both implementations, two constructors are available for building a Sequence, but this makes this Data Type not usable, 
+for example in a match because it lacks an unapply. 
+So one possible solution for this problem could be to add a getter getCons that works as unapply and provides an Option[(A, Sequence[A])] that can be used as an extractor.
+
 ## Test
 
-The purpose is to test Cons/Nil and Scala List Implementations.
-Inside SequenceCheck file was written a definition where is implemented a set of ScalaCheck tests. These is useful for testing both implementations.
+The aim of this part is to verify that both implementations work by writing one test for each axiom defined in the ADT specifications,
+using ScalaCheck.
 
-Each test is develop for check an axioms 
+The code can be found within test package, the file is called SequenceCheck.
 
-Generator of mapper/sequence/predicate/operator have been added at the beginning 
+To demonstrate that both implementations satisfy all the tests,
+a function that tests a SequenceADT is created and then invoked two times with the two different implementations.
+
+Inside the function, following the axioms defined in the ADT specifications,
+all the tests make assertions and check that every operation of the Sequence works as expected.

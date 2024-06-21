@@ -14,6 +14,10 @@ constructors:
 operations :
   filter[A]: Sequence[A] x (A => Boolean) => Sequence[A]
   map[A,B]: Sequence[A] x (A => B) => Sequence[B]
+  concat[A]: Sequence[A] x Sequence[A] => Sequence[A]
+  flatmap[A, B]: Sequence[A] x (A => Sequence[B]) => Sequence[B]
+  foldLeft[A, B]: Sequence[A] x B x ((B, A) => B) => B
+  reduce[A]: Sequence[A] x ((A, A) => A) => Option[A]
 
 axioms :
   filter(nil, f) = nil
