@@ -9,6 +9,22 @@ I tried to experiment with different ScalaCheck parameters and I found these pos
 * `.withMinSize` : is the minimum size value used by ScalaCheck when generating a value. The standard value is 0.
 * `.withMaxSize` : is the maximum size value used by ScalaCheck when generating a value. The standard value is 100.
 
+
+In the file `Task1SequenceCheck` I wrote a test using ScalaCheck that checks "of" operator is a correct factory.
+```
+property("of is a correct factory") =
+   forAll(smallInt(), arbitrary[String]): (i, s) =>
+      of(i, s) == of(i, s).filter(e => e == s)
+   &&
+   forAll(smallInt(), arbitrary[String]): (i, s) =>
+      of(i, s).filter(e => e != s) == Nil()
+   &&
+   forAll(smallInt(), arbitrary[String]): (i, s) =>
+      Cons(s, of(i, s)) == of(i+1, s)
+   &&
+   forAll(arbitrary[String]): s =>
+      of(0, s) == Nil()
+```
 ## From ScalaCheck to ScalaTest
 
 I created a file named `Task1ConvertToScalaTest` where I wrote the tests using ScalaTest format for the tests written inside `SequenceCheck`.
